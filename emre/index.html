@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--<< Header Area >>-->
+
+<head>
+    <!-- ========== Meta Tags ========== -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Emreede">
+    <meta name="description" content="Emreede – Personalized Guidance for Studying Abroad">
+    <!-- ======== Page title ============ -->
+    <title>Emreede – Personalized Guidance for Studying Abroad</title>
+    <!--<< Favicon >>-->
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+    <!--<< Bootstrap min.css >>-->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!--<< Font Awesome.css >>-->
+    <link rel="stylesheet" href="assets/css/font-awesome.css">
+    <!--<< Animate.css >>-->
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <!--<< Magnific Popup.css >>-->
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <!--<< MeanMenu.css >>-->
+    <link rel="stylesheet" href="assets/css/meanmenu.css">
+    <!--<< Odometer.css >>-->
+    <link rel="stylesheet" href="assets/css/odometer.css">
+    <!--<< Swiper Bundle.css >>-->
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <!--<< Nice Select.css >>-->
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <!--<< Main.css >>-->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <!--<< Style.css >>-->
+    <link rel="stylesheet" href="style.css">
+</head>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const dropdown = document.querySelector('.lang-dropdown');
+        if (!dropdown) return;
+        const btn = dropdown.querySelector('.lang-current');
+        const currentImg = btn.querySelector('img');
+        const options = dropdown.querySelectorAll('.lang-option');
+
+        // restore saved pick
+        try {
+            const saved = localStorage.getItem('emreede_lang');
+            if (saved) {
+                const opt = dropdown.querySelector(`.lang-option[data-lang="${saved}"] img`);
+                if (opt) currentImg.src = opt.src;
+            }
+        } catch (e) { }
+
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            const open = dropdown.classList.toggle('open');
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+
+        options.forEach(function (a) {
+            a.addEventListener('click', function (e) {
+                e.preventDefault();
+                const img = this.querySelector('img');
+                if (img) currentImg.src = img.src;
+                try { localStorage.setItem('emreede_lang', this.dataset.lang || 'en'); } catch (e) { }
+                dropdown.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                dropdown.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', async function () {
+        async function inject(id, url) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            try {
+                const res = await fetch(url, { cache: 'no-store' });
+                if (!res.ok) {
+                    console.error('Failed to load', url, 'HTTP status:', res.status);
+                    return;
+                }
+                el.innerHTML = await res.text();
+            } catch (e) {
+                console.error('Include failed for', url, '\\nIf you opened this page via file://, run a local server.', e);
+            }
+        }
+
+        //   Sections
+        await Promise.all([
+            inject('hero-placeholder', 'sections/hero.html'),
+            inject('about-placeholder', 'sections/about.html'),
+            inject('courses-placeholder', 'sections/courses.html'),
+            inject('timeline-placeholder', 'sections/timeline.html'),
+            inject('gateway-placeholder', 'sections/gateway.html'),
+            inject('process-placeholder', 'sections/process.html'),
+            inject('chooseus-placeholder', 'sections/chooseus.html'),
+            // inject('events-placeholder', 'sections/events.html'),
+            inject('testimonials-placeholder', 'sections/testimonials.html'),
+            inject('schools-placeholder', 'sections/schools.html'),
+            inject('faq-placeholder', 'sections/faq.html'),
+            inject('instagram-placeholder', 'sections/instagram.html'),
+            inject('guidance-placeholder', 'sections/guidance.html')
+        ]);
+
+        // Reinitialize scripts once everything is loaded
+        const script = document.createElement('script');
+        script.src = 'assets/js/main.js?v=' + Date.now();
+        document.body.appendChild(script);
+    });
+</script>
+
+<body>
+
+    <!-- Preloader Start -->
+    <div id="preloader" class="preloader">
+        <div class="animation-preloader">
+            <div class="edu-preloader-icon">
+                <img src="assets/img/preloader.gif" alt="">
+            </div>
+            <div class="txt-loading">
+                <span data-text-preloader="E" class="letters-loading">
+                    E
+                </span>
+                <span data-text-preloader="M" class="letters-loading">
+                    M
+                </span>
+                <span data-text-preloader="R" class="letters-loading">
+                    R
+                </span>
+                <span data-text-preloader="E" class="letters-loading">
+                    E
+                </span>
+                <span data-text-preloader="E" class="letters-loading">
+                    E
+                </span>
+                <span data-text-preloader="D" class="letters-loading">
+                    D
+                </span>
+                <span data-text-preloader="E" class="letters-loading">
+                    E
+                </span>
+            </div>
+            <p class="text-center">Loading</p>
+        </div>
+        <div class="loader">
+            <div class="row">
+                <div class="col-3 loader-section section-left">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-left">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-right">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-right">
+                    <div class="bg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back To Top start -->
+    <button id="back-top" class="back-to-top">
+        <i class="fas fa-long-arrow-up"></i>
+    </button>
+
+    <!-- Offcanvas Area Start -->
+    <div class="fix-area">
+        <div class="offcanvas__info">
+            <div class="offcanvas__wrapper">
+                <div class="offcanvas__content">
+                    <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
+                        <div class="offcanvas__logo">
+                            <a href="index.html">
+                                <img src="assets/img/logo/logo.png" alt="logo-img" width="140px">
+                            </a>
+                        </div>
+                        <div class="offcanvas__close">
+                            <button>
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <h3 class="offcanvas-title">Welcome to Emreede!</h3>
+                    <p>Your personalized guidance for studying abroad.</p>
+                    <div class="social-icon d-flex align-items-center">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="mobile-menu fix mb-3"></div>
+                    <div class="offcanvas__contact">
+                        <h3>Get in Touch</h3>
+                        <ul class="contact-list">
+                            <li>
+                                <span>
+                                    Email:
+                                </span>
+                                <a href="mailto:hello@emreede.com">hello@emreede.com</a>
+                            </li>
+                        </ul>
+                        <div class="offcanvas-button">
+                            <a href="#" class="theme-btn">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas__overlay"></div>
+
+    <!-- Header Section Start -->
+    <header class="header-section-3">
+        <div id="header-sticky" class="header-3">
+            <div class="container">
+                <div class="mega-menu-wrapper">
+                    <div class="header-main">
+                        <a href="index.html" class="header-logo">
+                            <img src="assets/img/logo/logo.png" alt="logo-img" width="140px">
+                        </a>
+                        <div class="header-left">
+                            <div class="mean__menu-wrapper">
+                                <div class="main-menu">
+                                    <nav id="mobile-menu">
+                                        <ul>
+                                            <li>
+                                                <a href="index.html">
+                                                    <span class="head-icon"><i class="fas fa-home-lg"></i></span>
+                                                    Home
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="about.html">
+                                                    <span class="head-icon"><i class="fa fa-info-circle"></i></span>
+                                                    About
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="head-icon"><i class="fa fa-graduation-cap"></i></span>
+                                                    Instructors
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="head-icon"><i class="fas fa-phone-rotary"></i></span>
+                                                    Contact
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-right d-flex justify-content-end align-items-center">
+                            <!-- inside .header-right ... immediately BEFORE <div class="header-button"> -->
+                            <div class="lang-dropdown d-none d-md-flex" aria-label="Language selector">
+                                <button class="lang-current" aria-haspopup="true" aria-expanded="false">
+                                    <img src="assets/img/flags/gb.svg" alt="English">
+                                </button>
+                                <div class="lang-menu">
+                                    <a href="#" class="lang-option" data-lang="en" title="English" aria-label="English">
+                                        <img src="assets/img/flags/gb.svg" alt="English">
+                                    </a>
+                                    <a href="#" class="lang-option" data-lang="tr" title="Türkçe" aria-label="Türkçe">
+                                        <img src="assets/img/flags/tr.svg" alt="Türkçe">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="header-button">
+                                <a href="#" class="theme-btn">Get Started</a>
+                            </div>
+                            <div class="header__hamburger d-xl-none my-auto">
+                                <div class="sidebar__toggle">
+                                    <i class="fas fa-bars"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTIONS -->
+    <div id="hero-placeholder"></div>
+    <div id="about-placeholder"></div>
+    <div id="courses-placeholder"></div>
+    <div id="timeline-placeholder"></div>
+    <div id="gateway-placeholder"></div>
+    <div id="process-placeholder"></div>
+    <div id="chooseus-placeholder"></div>
+    <!-- <div id="events-placeholder"></div> -->
+    <div id="testimonials-placeholder"></div>
+    <div id="schools-placeholder"></div>
+    <div id="faq-placeholder"></div>
+    <div id="guidance-placeholder"></div>
+    <!-- <div id="instagram-placeholder"></div> -->
+
+
+    <!-- Footer Section Start -->
+    <footer class="footer-section-3 fix">
+        <div class="container">
+            <div class="footer-widget-wrapper style-2">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                        <div class="single-footer-widget">
+                            <div class="widget-head">
+                                <a href="index.html">
+                                    <img src="assets/img/logo/logo.png" width="140px" alt="img">
+                                </a>
+                            </div>
+                            <div class="footer-content">
+                                <p>
+                                    Emreede provides family-level guidance for university admissions, summer schools,
+                                    scholarships, and exam preparation.
+                                </p>
+                                <div class="social-icon">
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                    <a href="#"><i class="fab fa-dribbble"></i></a>
+                                    <a href="#"><i class="fab fa-behance"></i></a>
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 ps-lg-5 wow fadeInUp" data-wow-delay=".4s">
+                        <div class="single-footer-widget">
+                            <div class="widget-head">
+                                <h3>Services</h3>
+                            </div>
+                            <ul class="list-area">
+                                <li><a href="#">University Guidance</a></li>
+                                <li><a href="#">Summer Schools</a></li>
+                                <li><a href="#">Scholarship Support</a></li>
+                                <li><a href="#">AP & IB Preparation</a></li>
+                                <li><a href="#">Language Coaching</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".8s">
+                        <div class="single-footer-widget style-left">
+                            <div class="widget-head">
+                                <h3>Contact Us</h3>
+                            </div>
+                            <div class="footer-content">
+                                <ul class="contact-info">
+                                    <li>
+                                        <a href="mailto:hello@emreede.com" class="link">hello@emreede.com</a>
+                                    </li>
+                                    <li>
+                                        <a href="tel:+905352531183">+90 535 253 1183</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 ps-xl-5 wow fadeInUp" data-wow-delay=".8s">
+                        <div class="single-footer-widget">
+                            <div class="widget-head">
+                                <h3>Newsletter</h3>
+                            </div>
+                            <div class="footer-content">
+                                <p>Get the latest news delivered to your inbox</p>
+                                <div class="footer-input">
+                                    <div class="icon">
+                                        <i class="far fa-envelope"></i>
+                                    </div>
+                                    <input type="email" id="email2" placeholder="Email Address">
+                                    <button class="newsletter-btn" type="submit">
+                                        Subscribe
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom style-3">
+            <div class="container">
+                <div class="footer-bottom-wrapper">
+                    <p>Copyright © <a href="index.html">Emreede</a>, all rights reserved.</p>
+                    <ul class="footer-menu wow fadeInUp" data-wow-delay=".5s">
+                        <li>
+                            <a href="#">
+                                University
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                FAQs
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Privacy Policy
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Events
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!--<< All JS Plugins >>-->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <!--<< Bootstrap Js >>-->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <!--<< Nice Select Js >>-->
+    <script src="assets/js/jquery.nice-select.min.js"></script>
+    <!--<< Odometer Js >>-->
+    <script src="assets/js/odometer.min.js"></script>
+    <!--<< Appear Js >>-->
+    <script src="assets/js/jquery.appear.min.js"></script>
+    <!--<< Swiper Slider Js >>-->
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <!--<< MeanMenu Js >>-->
+    <script src="assets/js/jquery.meanmenu.min.js"></script>
+    <!--<< Magnific Popup Js >>-->
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <!--<< Circle Progress Js >>-->
+    <script src="assets/js/circle-progress.js"></script>
+    <!--<< Wow Animation Js >>-->
+    <script src="assets/js/wow.min.js"></script>
+    <!--<< Main.js >>-->
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

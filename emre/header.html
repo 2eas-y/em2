@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--<< Header Area >>-->
+    <head>
+        <!-- ========== Meta Tags ========== -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Emreede">
+        <meta name="description" content="Emreede – Personalized Guidance for Studying Abroad">
+        <!-- ======== Page title ============ -->
+        <title>Emreede – Personalized Guidance for Studying Abroad</title>
+        <!--<< Favicon >>-->
+        <link rel="shortcut icon" href="assets/img/favicon.ico">
+        <!--<< Bootstrap min.css >>-->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <!--<< Font Awesome.css >>-->
+        <link rel="stylesheet" href="assets/css/font-awesome.css">
+        <!--<< Animate.css >>-->
+        <link rel="stylesheet" href="assets/css/animate.css">
+        <!--<< Magnific Popup.css >>-->
+        <link rel="stylesheet" href="assets/css/magnific-popup.css">
+        <!--<< MeanMenu.css >>-->
+        <link rel="stylesheet" href="assets/css/meanmenu.css">
+        <!--<< Odometer.css >>-->
+        <link rel="stylesheet" href="assets/css/odometer.css">
+        <!--<< Swiper Bundle.css >>-->
+        <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+        <!--<< Nice Select.css >>-->
+        <link rel="stylesheet" href="assets/css/nice-select.css">
+        <!--<< Main.css >>-->
+        <link rel="stylesheet" href="assets/css/main.css">
+        <!--<< Style.css >>-->
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const dropdown = document.querySelector('.lang-dropdown');
+          if (!dropdown) return;
+          const btn = dropdown.querySelector('.lang-current');
+          const currentImg = btn.querySelector('img');
+          const options = dropdown.querySelectorAll('.lang-option');
+      
+          // restore saved pick
+          try {
+            const saved = localStorage.getItem('emreede_lang');
+            if (saved) {
+              const opt = dropdown.querySelector(`.lang-option[data-lang="${saved}"] img`);
+              if (opt) currentImg.src = opt.src;
+            }
+          } catch(e) {}
+      
+          btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            const open = dropdown.classList.toggle('open');
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          });
+      
+          options.forEach(function (a) {
+            a.addEventListener('click', function (e) {
+              e.preventDefault();
+              const img = this.querySelector('img');
+              if (img) currentImg.src = img.src;
+              try { localStorage.setItem('emreede_lang', this.dataset.lang || 'en'); } catch(e) {}
+              dropdown.classList.remove('open');
+              btn.setAttribute('aria-expanded', 'false');
+            });
+          });
+      
+          document.addEventListener('click', function (e) {
+            if (!dropdown.contains(e.target)) {
+              dropdown.classList.remove('open');
+              btn.setAttribute('aria-expanded', 'false');
+            }
+          });
+      
+          document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+              dropdown.classList.remove('open');
+              btn.setAttribute('aria-expanded', 'false');
+            }
+          });
+        });
+      </script>
+<!-- Offcanvas Area Start -->
+        <div class="fix-area">
+            <div class="offcanvas__info">
+                <div class="offcanvas__wrapper">
+                    <div class="offcanvas__content">
+                        <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
+                            <div class="offcanvas__logo">
+                                <a href="index.html">
+                                    <img src="assets/img/logo/logo.png" alt="logo-img" width="140px">
+                                </a>
+                            </div>
+                            <div class="offcanvas__close">
+                                <button>
+                                <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <h3 class="offcanvas-title">Welcome to Emreede!</h3>
+                        <p>Your personalized guidance for studying abroad.</p>
+                        <div class="social-icon d-flex align-items-center">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                        <div class="mobile-menu fix mb-3"></div>
+                        <div class="offcanvas__contact">
+                            <h3>Get in Touch</h3>
+                            <ul class="contact-list">
+                                <li>
+                                    <span>
+                                        Email:
+                                    </span>
+                                    <a href="mailto:info@emreede.com">info@emreede.com</a>
+                                </li>
+                            </ul>
+                            <div class="offcanvas-button">
+                                <a href="#" class="theme-btn">Get Started</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offcanvas__overlay"></div>
+
+        <!-- Header Section Start -->
+        <header class="header-section-3">
+            <div id="header-sticky" class="header-3">
+                <div class="container">
+                    <div class="mega-menu-wrapper">
+                        <div class="header-main">
+                            <a href="index.html" class="header-logo">
+                                <img src="assets/img/logo/logo.png" alt="logo-img" width="140px">
+                            </a>               
+                            <div class="header-left">
+                                <div class="mean__menu-wrapper">
+                                    <div class="main-menu">
+                                        <nav id="mobile-menu">
+                                            <ul>
+                                                <li>
+                                                    <a href="index.html">
+                                                        <span class="head-icon"><i class="fas fa-home-lg"></i></span>
+                                                        Home
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="head-icon"><i class="fa fa-info-circle"></i></span>
+                                                        About
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="head-icon"><i class="fa fa-graduation-cap"></i></span>
+                                                        Instructors
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="head-icon"><i class="fas fa-phone-rotary"></i></span>
+                                                        Contact
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="header-right d-flex justify-content-end align-items-center">
+                                <!-- inside .header-right ... immediately BEFORE <div class="header-button"> -->
+                                <div class="lang-dropdown d-none d-md-flex" aria-label="Language selector">
+                                <button class="lang-current" aria-haspopup="true" aria-expanded="false">
+                                <img src="assets/img/flags/gb.svg" alt="English">
+                                </button>
+                                <div class="lang-menu">
+                                <a href="#" class="lang-option" data-lang="en" title="English" aria-label="English">
+                                <img src="assets/img/flags/gb.svg" alt="English">
+                                </a>
+                                <a href="#" class="lang-option" data-lang="tr" title="Türkçe" aria-label="Türkçe">
+                                <img src="assets/img/flags/tr.svg" alt="Türkçe">
+                                </a>
+                                </div>
+                                </div>           
+                                <div class="header-button">
+                                    <a href="#" class="theme-btn">Get Started</a>
+                                </div>
+                                <div class="header__hamburger d-xl-none my-auto">
+                                    <div class="sidebar__toggle">
+                                        <i class="fas fa-bars"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+</html>
